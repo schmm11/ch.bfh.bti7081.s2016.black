@@ -24,13 +24,21 @@ Allgemein ein Problem: Es würden eher nur technickaffine Patienten das System �
 
 
 3) Synthesize
-
-Personas as Target Users:
-
-Persona 1: Technickaffiner junger Mensch, der eine nicht so starke psychische Störung hat. 
+Persona 1: Hans, von Freunden der lustige Alkoholiger genannt, lebt in Bern auf der Gosse. Ansich ist er gar nicht lustig, denn Hans ist depressiv. Der 45-Jährige ist arbeitslos und hat keine Lehre abgeschlossen. Er lebt vom Betteln und Sozialhife (wählt aber trotzdem SVP, denn Hans ist bildungsfern). Da er weder ein Smartphone noch Internet hat und auch selten (nur in ambulaten) Fall in eine Klinik geht, können wir als Softwareentwickler leider nichts für ihn tun. Lebe Wohl, Hans.
 
 
-Persona 2: Ältere Herr, der an div. Störungen sowie Alkoholsucht leidet. Seine Krankheit ist im relativ egal, ebenso seine Appointments. Er ist nicht besonders technickaffin und hat selten Zugang zu der Website.
+Persona 2: Jaqueline ist eine 25-Jährige Kauffrau und leidet an einer Mittelschweren Depressiven Störung, seit ihre Eltern bei einem Verkehrsunfall ums Leben gekommen sind. Direkt nach dem Unfall wurde sie von einem Psychotherapeut betreut, der Ihr eine Schwere Depression diagnostizierte. Sie erleidet ab und zu einen Depressive Schockphase, in welchem sie rasche psychologische Hilfe benötigt. Mit einer App mit Standorten der nächsten "Drop-In" Kliniken könnte Sie sich schnell in Hilfe begeben. Da Sie evenfalls sehr vergesslich ist, kann Sie mit der App Ihre Medikamentendossierungen nachschlagen. Jaqueline ist häufig unterwegs und ist angewiesen auf Ihre Medikamente. Da Sie die Medis nur in kleinen Dossen bekommt, muss sie diese etwa einmal wöchentlich nachkaufen. Sie muss dabei immer ihren Medikamentenausweis dabeihaben. Im App könnten wir eine digitale Kopie des Ausweises dabeihaben, damit Sie auch ohne das Blatt Papier ihre Medis bekommen kann.
+
+
+
+
+
+Persona 3: Hubert ist ein 35 Jähriger Elektriker, der an einer Agoraphobie leidet. Durch seine stark ausgeprägte Agoraphobie hat er nicht mehr viel sozialen Kontakt und bleibt meistens zuhause. Er musste deswegen seinen Militärdienst abbrechen und kann auch nicht mehr auf grossen Baustellen arbeiten. Nach etlichen Jahren des Leidens er sich vor einem Monatentschieden, einen Psychologen aufzusuchen und sich in eine Therapie zu begeben. Er hat mehrmals pro Monat einen Termin bei seinem Psychologen und erhält er "Selektive Serotoninwiederaufnahmehemmer", welche bei Bedarf bei bestimmten Symptomen eingenommen werden sollten. Die Menge des einzunehmenden Medikaments ist nach Stärke der Panikatacke sowie der bereits vorher eingenommenen Menge abhängig.
+
+Da sein Psychologe nicht die ganze Zeit arbeitet, möchte Hubert gerne wissen, wo er im Notfall hingehen/anrufen kann. Dieses Sicherheit ist ihm sehr wichtig (typisch für Agoraphobie, da Angst vor Kontrollverlust).
+
+Hans ist kein exzessiver Smartphone User, hat das Telefon aber immer bei sich.
+
 
 
 Main Features:
