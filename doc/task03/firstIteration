@@ -1,0 +1,57 @@
+Diese erste Iteration ist noch ohne End-User Interview gemacht worden. Es beruht daher vorallem auf dem Auftrag sowie auf den persönlichen Erfahrungen und Vorstellungen der Team Black Member
+
+1) Scope
+
+Die Patienten sollten immer über ihre Möglichkeiten zur Behandlung und ihrer Medikation informiert sein:
+	- Patienten sollten ihre pre-arranged appointments kennen
+	- Patienten sollten die drop-in fähigen Kliniken, welche auf ihr spezifisches Leiden spezialisiert sind, sehen 
+	- Patienten sollten eine Liste (inkl. Dosis und "Gebrauchsanleitung") ihrer Medikamenten haben.
+	- Patienten sollten ihre Kontaktangaben verändern können.
+
+Fragen zum Scope: 
+	- Sollen die Patienten Kommentare zu den Medikamenten machen können? z.B: Habe an Tag X das Medikament Y nicht genommen.	
+	- sollen die Patienten ihren eigenen "Gefährlichkeitstatus" sehen?
+	
+
+2) Research
+
+Research wird mit dem Interview erledigt. siehe dazu CS2 Task2 Interview
+
+Persönliche Erfahrungen schmm11 (Arbeit als IT-Supporter im Spital Emmental, welches auch eine Psychoklinik beeinhaltet):
+
+Meiner bescheidenen Erfahrung nach sind vorallem das ansehen der Pre-arranged appointements und eine Übersicht der Drop-In Kliniken für die Patienten wichtig. Ihre Medikation haben die meisten eh im Griff, und die Patienten, die Ihre Medikation nicht interessiert würden das auch nicht unbedingt auf einer Website nachschauen.
+
+Allgemein ein Problem: Es würden eher nur technickaffine Patienten das System überhaupt gebrauchen. Die Application könnte als gutes Infosystem für den Patienten dienen, aber nicht als zuverlässiges Kontrollsystem für die Ärzte. 
+
+
+3) Synthesize
+
+Personas as Target Users:
+
+Persona 1: Technickaffiner junger Mensch, der eine nicht so starke psychische Störung hat. 
+
+
+Persona 2: Ältere Herr, der an div. Störungen sowie Alkoholsucht leidet. Seine Krankheit ist im relativ egal, ebenso seine Appointments. Er ist nicht besonders technickaffin und hat selten Zugang zu der Website.
+
+
+Main Features:
+
+	- Sicheres Login 
+	- Terminverwaltung
+	- Übersicht aller Drop-In Kliniken (inkl. Kontaktangaben) bei einem Notfall (evtl. sogar mit GPS Navigation?)
+	- Übersicht der Medis inkl Gebrauchsanleitung.
+	- Möglichkeit zum ändern der eigenen Kontaktangaben (inkl. Möglihckeit, sich als Obdachlos zu bezeichnen => Keine Pflichtfelder wie Adresse, Phone etc.)
+
+	
+	
+	
+
+4) Design
+
+Storyboards
+siehe File Storyboards_firstIteration
+
+
+
+
+5) Prototype
