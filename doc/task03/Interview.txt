@@ -1,0 +1,61 @@
+Draft of the Interview Questions
+
+Unstruktiert:
+Wir möchten eine Application für die Termin- und Medikamentverwaltung von Patienten erstellen. 
+
+1) Finden Sie das allgemein gute Idee?
+
+
+2) Dann würden Sie (resp. die Patienten) das auch benutzen?
+
+
+3) Wie würde Sie sich denn so ein Applikation vorstellen (auch im Vergleich zu anderen Application/apps)?
+
+
+4) Gibt es schon eine App oder Website, die in diese Richtung geht?
+
+5) Soll der persönliche Kontakt per App erweitert werden, im Sinne von persönlichen Anrufen vor den Terminen etc.
+
+
+
+
+
+Strukturiert:
+
+1) Wir plannen vier "Teil-programme" für folgenden 4 Use-cases: Finden Sie die Use-Cases nützlich für die Patienten?
+
+	1.1)  Eine Terminverwaltung
+	1.2)  Eine Medikamentenverwaltung
+	1.3)  Eine Anzeige des Medikamentenausweises, damit dieser auch digital mitgenommen werden kann
+	1.4)  Eine Map mit den nächsten "Drop-In" Psyichiatriekliniken, damit im Notfall schnell eine Klinik gefunden werden kann.
+
+
+2) Wie würden Sie den Terminteil erwarten?
+
+
+2.0)	Vergessen viele der Patienten ihre Termine?
+2.1) 	Wäre eine automatische Synchronisation der Termine (gepusht durch die Pfleger/ 	PatAdmin) sinnvoll?
+2.2) Wäre eine Alarm Funktion vor dem Termin sinnvoll 
+2.3) Was würden Sie sonst noch von einer Terminverwaltung erwarten?
+2.4) Würde eine Taskansicht (Liste mit allen Terminen, geordnet nach Datum) oder eine Kalenderansicht (Wochen- oder Monatsansicht mit hervogehobenen Tage (wie ein Kalender halt))
+
+
+
+3) Medikamentenverwaltung
+
+	3.0) Vergessen viele der Patienten ihre Medikamente oder deren Dossierungen?
+	3.1) Würde es dem Patienten /Doktor etwas bringen, die Einnahme ihrer Medikamten (entweder bei jeder Einnahme oder beim Abweichen von der Standart, vom Arztvorschgeschrieben Dossierung) aufzuzeichnen.
+	3.2) Was halten Sie von einem Alarm/Notiz vor dem planmässigen Einnehmen eines Medikamentes
+
+
+4) Medikamentenausweises
+
+	4.0) Allgemein: wie funktioniert das ganze Medikamentenrezeptsystem?
+	4.1)Vergessen viele Patienten ihren Mediausweis? Und wenn ja: kommen diese dann noch problemlos an ihre Medizin, falls ihr Vorrat aufgebraucht ist?
+
+
+5) Map mit den "Drop-In" Kliniken
+
+	5.0) Wissen die Depressiven oder Agoraphoben Patienten, wo sie im Notfall hinkönnen?
+	5.1) Gibt es solche Notfälle in der Depressiven oder Agoraphoben Gruppe überhaupt?
+	
