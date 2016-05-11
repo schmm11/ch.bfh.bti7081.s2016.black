@@ -19,3 +19,5 @@
 - 15.04.2016: CS1 Task 07. Ganzes Team anwesend
 
 - 20.04.2016: CS Task 07 Präsentation. Ganzes Team anwesend
+
+- 11.05.2016: CS Taks 09 and IDE Setup
