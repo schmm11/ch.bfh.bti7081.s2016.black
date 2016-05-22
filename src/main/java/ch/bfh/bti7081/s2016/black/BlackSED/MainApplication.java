@@ -8,18 +8,12 @@ import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.helper.NavigationHelper;
-import main.java.ch.bfh.bti7081.s2016.black.BlackSED.view.CalendarView;
-import main.java.ch.bfh.bti7081.s2016.black.BlackSED.view.EmergencyCardView;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.model.MainMenuModel;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.presenter.MainMenuPresenter;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.view.MainMenuView;
-import main.java.ch.bfh.bti7081.s2016.black.BlackSED.view.MedicamentView;
-import main.java.ch.bfh.bti7081.s2016.black.BlackSED.view.SettingsView;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -30,25 +24,32 @@ import main.java.ch.bfh.bti7081.s2016.black.BlackSED.view.SettingsView;
  */
 @Theme("mytheme")
 @Widgetset("ch.bfh.bti7081.s2016.black.BlackSED.MyAppWidgetset")
+@SuppressWarnings("serial")
 public class MainApplication extends UI {
-
-	Navigator navigator;
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+    	// set title of page
         getPage().setTitle("Health App Team Black");
         
-        // Create a navigator to control the views
-        navigator = new Navigator(this, this);
+        //create a navigator to control the views (will be used for all navigation within the app)
+        Navigator navigator = new Navigator(this, this);
         
-        // Create and register the views
-        navigator.addView(NavigationHelper.MAINVIEW, new MainMenuView());
-        navigator.addView(NavigationHelper.CALENDARVIEW, new CalendarView());
-        navigator.addView(NavigationHelper.MEDICAMENTSVIEW, new MedicamentView());
-        navigator.addView(NavigationHelper.EMERGENCYCARDVIEW, new EmergencyCardView());
-        navigator.addView(NavigationHelper.SETTINGSVIEW, new SettingsView());
+        //create model and Vaadin view implementation
+        MainMenuModel model = new MainMenuModel();
+        MainMenuView view  = new MainMenuView();
+      
+        //the presenter binds the model and view together
+        MainMenuPresenter presenter = new MainMenuPresenter(model, view);
         
-        navigator.navigateTo("main");
+        //add presenter as listener of view
+        view.addListener(presenter);
+            
+        //add view to Vaadin navigation stack
+        navigator.addView(NavigationHelper.MAINVIEW, view);
+        
+        //present main menu
+        navigator.navigateTo(NavigationHelper.MAINVIEW);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

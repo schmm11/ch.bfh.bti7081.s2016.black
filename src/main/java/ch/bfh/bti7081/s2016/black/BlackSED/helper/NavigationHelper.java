@@ -4,6 +4,6 @@ public class NavigationHelper {
 	public static final String MAINVIEW = "main";
 	public static final String CALENDARVIEW = "calendar";
 	public static final String MEDICAMENTSVIEW = "medicaments";
-	public static final String EMERGENCYCARDVIEW = "emergency";
+	public static final String EMERGENCYVIEW = "emergency";
 	public static final String SETTINGSVIEW = "settings";
 }

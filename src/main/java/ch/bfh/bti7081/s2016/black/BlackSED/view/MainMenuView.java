@@ -1,5 +1,9 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -7,44 +11,61 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
-public class MainMenuView extends VerticalLayout implements View {
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.model.entities.MainMenuEntry;
+
+interface MainMenuViewInterface {
+    public void addListener(MainMenuViewListener listener);
+	public void presentView(View view, String identifier);
+	public void initializeMenu(List<MainMenuEntry> mainMenuEntries);
+
+    public interface MainMenuViewListener {
+		void menuButtonClicked(MainMenuEntry mainMenuEntry);
+    }
+}
+
+@SuppressWarnings("serial")
+public class MainMenuView extends VerticalLayout implements View, MainMenuViewInterface {
+	
+	private List<MainMenuViewListener> listeners = new ArrayList<MainMenuViewListener>();
 	
 	public MainMenuView() {
-		setSizeFull();
-		
+		setSizeFull();	
 		Label titleLabel = new Label("Health App");
-                
-        Button menuButton1 = new Button("Kalender");
-        menuButton1.addClickListener( e -> {
-        	getUI().getNavigator().navigateTo("calendar");
-        });
-        
-        Button menuButton2 = new Button("Medikamente");
-        menuButton2.addClickListener( e -> {
-        	getUI().getNavigator().navigateTo("medicaments");
-        });
-        
-        Button menuButton3 = new Button("Notfallkarte");
-        menuButton3.addClickListener( e -> {
-        	getUI().getNavigator().navigateTo("emergency");
-        });
-        
-        Button menuButton4 = new Button("Einstellungen");
-        menuButton4.addClickListener( e -> {
-        	getUI().getNavigator().navigateTo("settings");
-        });
-
-        addComponents(titleLabel, menuButton1, menuButton2, menuButton3, menuButton4);
-        setComponentAlignment(menuButton1, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(menuButton2, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(menuButton3, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(menuButton4, Alignment.MIDDLE_CENTER);
+        addComponent(titleLabel);
         setMargin(true);
         setSpacing(true);
     }
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+	}
 
+	@Override
+	public void addListener(MainMenuViewListener listener) {
+		listeners.add(listener);
+	}
+	
+	@Override
+	public void presentView(View view, String identifier) {
+		Navigator navigator = getUI().getNavigator();
+		navigator.addView(identifier, view);
+		navigator.navigateTo(identifier);
+	}
+
+	@Override
+	public void initializeMenu(List<MainMenuEntry> mainMenuEntries) {
+		for (MainMenuEntry mainMenuEntry : mainMenuEntries) {
+	        Button button = new Button(mainMenuEntry.buttonTitle);
+	        button.setData(mainMenuEntry.mainMenuType);
+	        
+	        button.addClickListener( e -> {
+	        	for (MainMenuViewListener listener: this.listeners) {
+	                listener.menuButtonClicked(mainMenuEntry);
+	        	}
+	        });
+
+	        addComponent(button);
+	        setComponentAlignment(button, Alignment.MIDDLE_CENTER);
+		}
 	}
 }
