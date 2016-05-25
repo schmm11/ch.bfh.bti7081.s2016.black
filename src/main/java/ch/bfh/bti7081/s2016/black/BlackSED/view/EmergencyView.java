@@ -25,24 +25,19 @@ Label notfall = new Label(
     "<b>First: Stay calm</B>" +
     "<ul>"+
     "  <li>Atmen Sie ruhig</li>"+
-    "  <li>itemized lists</li>"+
-    "  <li>etc.</li>"+
+    "  <li>Hocken Sie sich hin</li>"+
+    "  <li>Es wird Ihnen nichts passieren</li>"+
     "</ul> "+
-    "Bla Bla Bla.<br><br>"+
-    "<audio controls><source src=\"https://www.angst-panik-hilfe.de/angst-notruf.mp3\" type=\"audio/ogg\"> <source src=\"horse.mp3\" type=\"audio/mpeg\">  Your browser does not support the audio element.  </audio>"
-    
-    
+    "Untenstehendes Audiofile wird Ihnen dabei helfen, alles wieder in den Griff zu bekommen<br>"+
+    "<audio controls><source src=\"https://www.angst-panik-hilfe.de/angst-notruf.mp3\" type=\"audio/ogg\"> <source src=\"horse.mp3\" type=\"audio/mpeg\">  Your browser does not support the audio element.  </audio>"+
+    "<br> <font size=\"2\"> &copy; Dr. Rolf Merkle, Thanks alot"
+
     ,
     ContentMode.HTML);
 	content.addComponents(notfall);
-	
-	
-// MusikPlayer
-	
-	
-		content.setSizeUndefined();
-		this.addComponentAsFirst(content);
-		this.setComponentAlignment(content, Alignment.MIDDLE_CENTER);
+	content.setSizeUndefined();
+	this.addComponentAsFirst(content);
+	this.setComponentAlignment(content, Alignment.MIDDLE_CENTER);
 		
 	}
 }
