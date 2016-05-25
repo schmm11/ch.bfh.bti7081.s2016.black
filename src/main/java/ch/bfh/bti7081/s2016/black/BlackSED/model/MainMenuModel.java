@@ -7,7 +7,7 @@ import main.java.ch.bfh.bti7081.s2016.black.BlackSED.model.entities.MainMenuEntr
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.model.entities.MainMenuEntry.MainMenuType;
 
 public class MainMenuModel extends BaseModel {
-	
+
 	public List<MainMenuEntry> getMainMenuEntries() {
 		List<MainMenuEntry> list = new ArrayList<MainMenuEntry>();
 		list.add(new MainMenuEntry(MainMenuType.CALENDAR, "Kalender"));
