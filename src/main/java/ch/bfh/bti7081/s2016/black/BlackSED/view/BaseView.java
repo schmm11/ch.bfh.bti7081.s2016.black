@@ -7,6 +7,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -25,19 +26,30 @@ public class BaseView extends VerticalLayout implements View, BaseViewInterface 
 	protected List<BaseViewListener> listeners = new ArrayList<BaseViewListener>();
 
 	public BaseView(String title) {
-		setSizeFull();
+		setSizeUndefined();
 		
-		Label titleLabel = new Label(title);
-
+		
+		
+		Label titleLabel = new Label(title);	
+		
         Button button = new Button("Zurück");
         button.addClickListener( e -> {
         	for (BaseViewListener listener: this.listeners) {
         		listener.backButtonClicked();
         	}
         });
-
-        addComponents(titleLabel, button);
-        setComponentAlignment(button, Alignment.MIDDLE_CENTER);	
+        
+        HorizontalLayout header = new HorizontalLayout();
+        header.setSizeFull();
+        header.addComponent(button);
+        header.addComponent(titleLabel);
+        header.setComponentAlignment(titleLabel, Alignment.MIDDLE_RIGHT);
+        
+        addComponent(header);
+        //addComponent(titleLabel);
+        //setComponentAlignment(titleLabel, Alignment.TOP_RIGHT);
+        //setComponentAlignment(button, Alignment.TOP_LEFT);	
+        	
 	}
 	
 	@Override

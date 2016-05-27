@@ -4,6 +4,7 @@ import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Calendar;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
@@ -77,11 +78,24 @@ public class CalendarView extends BaseView implements CalendarViewInterface {
 		});
 
 		table.setPageLength(table.size());
-
+		
+		
+		// ************************ CALENDAR *******************************//
+		Calendar cal = new Calendar("My Calendar");
+		cal.setWidth("600px");
+		cal.setHeight("300px");
+		
+		
+		
+		// ************************ END CALENDAR *******************************//
+		
 		addComponent(table);
-		addComponent(current);
-		setComponentAlignment(current, Alignment.MIDDLE_CENTER);
-		setComponentAlignment(table, Alignment.TOP_CENTER);
+		//addComponent(current);
+		addComponent(cal);
+		setComponentAlignment(cal, Alignment. TOP_RIGHT);
+		//setComponentAlignment(current, Alignment.MIDDLE_CENTER);
+		setComponentAlignment(table, Alignment.TOP_LEFT);
+		//setComponentAlignment(table, Alignment. MIDDLE_RIGHT);
 		// **************** END OF TABLE ***************
 	}
 
