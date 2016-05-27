@@ -6,6 +6,8 @@ import java.util.List;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
+import com.vaadin.server.Page.Styles;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
@@ -29,9 +31,10 @@ public class MainMenuView extends VerticalLayout implements View, MainMenuViewIn
 	private List<MainMenuViewListener> listeners = new ArrayList<MainMenuViewListener>();
 	
 	public MainMenuView() {
-		setSizeFull();	
+		setSizeUndefined();	
 		Label titleLabel = new Label("Health App");
-        addComponent(titleLabel);
+		titleLabel.setWidth(150, Unit.POINTS);
+		addComponent(titleLabel);
         setMargin(true);
         setSpacing(true);
     }
@@ -57,6 +60,12 @@ public class MainMenuView extends VerticalLayout implements View, MainMenuViewIn
 		for (MainMenuEntry mainMenuEntry : mainMenuEntries) {
 	        Button button = new Button(mainMenuEntry.buttonTitle);
 	        button.setData(mainMenuEntry.mainMenuType);
+	        button.setWidth(150, Unit.POINTS);
+	        button.setStyleName("foo");
+	        //Page.getCurrent().getStyles().add("{ border-radius: 25px }");
+	        
+	        //Styles styles = Page.getCurrent().getStyles();
+	        //styles.add(".v-button { background-color: red; }");
 	        
 	        button.addClickListener( e -> {
 	        	for (MainMenuViewListener listener: this.listeners) {
