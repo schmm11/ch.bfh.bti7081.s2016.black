@@ -10,6 +10,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.helper.NavigationHelper;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.model.MainMenuModel;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.presenter.LoginPresenter;
@@ -31,6 +32,14 @@ public class MainApplication extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+    	try {
+    		MysqlAdapter mysql = new MysqlAdapter();
+    		mysql.query("show tables;");
+    	}
+    	catch (Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
     	// set title of page
         getPage().setTitle("Health App Team Black");
 
