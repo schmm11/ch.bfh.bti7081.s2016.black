@@ -56,6 +56,17 @@ public final class LoginView extends VerticalLayout implements View, LoginViewIn
     /** */
     public LoginView()
     {
+    	// temporary hack for login without authentication
+    	// Use 'ALT + ENTER' to bypass authentication
+    	addShortcutListener(new ShortcutListener("backdoor", ShortcutAction.KeyCode.ENTER, new int[] { ShortcutAction.ModifierKey.ALT })
+		{
+			@Override
+			public void handleAction(Object sender, Object target)
+			{
+				getUI().getNavigator().navigateTo(NavigationHelper.MAINVIEW);
+			}
+		});
+
     	final Predicate<String> xPasswordPredicate = (strPassword) ->
     	{
     		return strPassword.length() >= 8 &&
