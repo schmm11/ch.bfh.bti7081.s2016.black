@@ -1,17 +1,11 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+import java.sql.*;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities.AbstractEntity;
 
 public class MysqlAdapter extends AbstractAdapter {
-	String dsn = "jdbc:mysql//37.120.191.124:22436/black";
-	String user = "";
+	String dsn = "jdbc:mysql://37.120.191.124:22436/black";
+	String user = "black";
 	String pass = "";
 	
 	Connection connection = null;
@@ -32,7 +26,7 @@ public class MysqlAdapter extends AbstractAdapter {
 			}
 		}
 		catch (Exception e) {
-			throw new Exception("Fail to connecto to mysql");
+			throw new Exception(e.getMessage());
 		}
 	}
 	
