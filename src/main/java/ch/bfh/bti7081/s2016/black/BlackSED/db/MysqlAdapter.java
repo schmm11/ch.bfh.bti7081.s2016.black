@@ -6,7 +6,7 @@ import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities.AbstractEntity;
 public class MysqlAdapter extends AbstractAdapter {
 	String dsn = "jdbc:mysql://37.120.191.124:22436/black";
 	String user = "black";
-	String pass = "";
+	String pass = "f[K&ncK:GHzboKu_n@X";
 	
 	Connection connection = null;
 	
