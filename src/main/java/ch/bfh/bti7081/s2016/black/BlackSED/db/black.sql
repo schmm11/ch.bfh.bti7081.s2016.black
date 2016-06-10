@@ -92,29 +92,29 @@ INSERT INTO address (address_id, street, postalCode, city) VALUES
 (1, 'Kranweg', 2000, 'Bern'),
 (2, 'Hubstrasse', 3000, 'Zürich');
 INSERT INTO appointment (appointment_id, startDate, endDate, location) VALUES 
-(1, '2015-05-06 14:25:00', '2015-05-07 10:15:00', '{1}'),
-(2, '2013-08-11 16:47:00', '2013-08-11 11:25:00', '{2}');
+(1, '2015-05-06 14:25:00', '2015-05-07 10:15:00', '1'),
+(2, '2013-08-11 16:47:00', '2013-08-11 11:25:00', '2');
 INSERT INTO doctor (doctor_id, defaultLocation) VALUES 
 (1, '{1}');
 INSERT INTO location (location_id, name, address) VALUES 
-(1, 'Hubbabubba', '{1}'),
-(2, 'Gerstensuppe', '{2}');
+(1, 'Hubbabubba', '1'),
+(2, 'Gerstensuppe', '2');
 INSERT INTO medicine (medicine_id, name, manufacturer, doseUnit, sideEffect) VALUES 
-(1, 'Viagra', 'Pfizer', 'Tablette', '{1}'),
-(2, 'Aspirin', 'Bayer', 'Zäpfchen', '{2,3}');
+(1, 'Viagra', 'Pfizer', 'Tablette', '1'),
+(2, 'Aspirin', 'Bayer', 'Zäpfchen', '2,3');
 INSERT INTO patient (patient_id, threatment) VALUES 
-(1, '{1}'),
-(2, '{2}');
+(1, '1'),
+(2, '2');
 INSERT INTO person (person_id, firstName, lastName, address, username, password) VALUES 
-(1, 'Kriton', 'Tomani', '{1}', 'sexygirl69', '12345'),
-(2, 'Guido', 'Bucher', '{2}', 'bruno', '12345');
+(1, 'Kriton', 'Tomani', '1', 'sexygirl69', '12345'),
+(2, 'Guido', 'Bucher', '2', 'bruno', '12345');
 INSERT INTO prescription (prescription_id, medicine, dose, taking) VALUES 
-(1, '{1}', '1', '{1:"2016-06-14 12:46:00",2:"2016-06-15 23:00:00"}'),
-(2, '{2}', '50', '{1:"2016-06-13 01:23:00",2:"2016-06-15 10:56:00"}');
+(1, '1', '1', '"2016-06-14 12:46:00","2016-06-15 23:00:00"'),
+(2, '2', '50', '"2016-06-13 01:23:00","2016-06-15 10:56:00"');
 INSERT INTO sideEffect (siteEffect_id, name, description) VALUES 
 (1, 'Husten', 'Leichtes Husten am linken Arm'),
 (2, 'Haarausfall', 'Haarausfall im Genitalbereich'),
 (3, 'Aufgeschlagenes Knie', 'Blutende Wunde am linken Knie');
 INSERT INTO treatment (treatment_id, name, prescription, startDate, endDate, appointments, description) VALUES 
-(1, 'Gerötetes Ohrläppchen', '{1}', '2015-05-06 16:09:00', '2056-04-08 20:14:00', '{1}', 'Unatürliches Rot am Ohrläppchen wegen zuviel Bewegung.'),
-(2, 'Bierbauch', '{2}', '2013-08-11 07:06:00', '2013-08-11 12:53:00', '{2}', 'Gewichtsabnahme nach Biermangel');
+(1, 'Gerötetes Ohrläppchen', '1', '2015-05-06 16:09:00', '2056-04-08 20:14:00', '1', 'Unatürliches Rot am Ohrläppchen wegen zuviel Bewegung.'),
+(2, 'Bierbauch', '2', '2013-08-11 07:06:00', '2013-08-11 12:53:00', '2', 'Gewichtsabnahme nach Biermangel');
