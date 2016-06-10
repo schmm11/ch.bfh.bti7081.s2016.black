@@ -1,7 +1,11 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.AppointmentModel;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.PrescriptionModel;
 import jdk.nashorn.internal.ir.debug.JSONWriter;
 
 import com.google.gwt.json.client.JSONParser;
@@ -32,8 +36,17 @@ public class Treatment extends AbstractEntity {
 		this.name = name;
 	}
 	
-	public int[] getPrescription() {
-		return Arrays.stream(this.prescription.substring(1, this.prescription.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+	public ArrayList<Prescription> getPrescription() {
+		int[] prescription = Arrays.stream(this.prescription.substring(1, this.prescription.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		ArrayList<Prescription> al = new ArrayList<Prescription>();
+		try {
+			PrescriptionModel tm = new PrescriptionModel(new MysqlAdapter());
+			for(int i = 0; i <= prescription.length; i++) {
+				al.add(tm.get(prescription[i]));
+			}
+		}
+		catch (Exception e) {}
+		return al;
 	}
 	
 	public void setPrescription(int[] prescription) {
@@ -60,8 +73,17 @@ public class Treatment extends AbstractEntity {
 		this.endDate = endDate;
 	}
 	
-	public int[] getAppointments() {
-		return Arrays.stream(this.appointments.substring(1, this.appointments.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+	public ArrayList<Appointment> getAppointments() {
+		int[] appointment = Arrays.stream(this.appointments.substring(1, this.appointments.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		ArrayList<Appointment> al = new ArrayList<Appointment>();
+		try {
+			AppointmentModel tm = new AppointmentModel(new MysqlAdapter());
+			for(int i = 0; i <= appointment.length; i++) {
+				al.add(tm.get(appointment[i]));
+			}
+		}
+		catch (Exception e) {}
+		return al;
 	}
 	
 	public void setAppointments(int[] appointments) {

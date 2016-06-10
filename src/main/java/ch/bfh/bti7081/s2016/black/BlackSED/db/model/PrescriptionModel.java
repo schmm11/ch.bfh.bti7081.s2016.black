@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities.Person;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities.Prescription;
 
 public class PrescriptionModel extends AbstractModel {
@@ -35,4 +36,21 @@ public class PrescriptionModel extends AbstractModel {
 		return al;
 	}
 	
+	public Prescription get(int id) {
+		String sql = "SELECT * from prescription where prescription_id = " + id +";";
+		Prescription obj = new Prescription();
+		
+		try {
+			ResultSet rs = this.adapter.query(sql);
+			while(rs.next()) {
+				obj.setPrescription_id(rs.getInt("prescription_id"));
+				obj.setDose(rs.getInt("dose"));
+				obj.setMedicine(rs.getString("medicine"));
+				obj.setTaking(rs.getString("taking"));
+			}
+		}
+		catch (Exception e) {}
+		
+		return obj;
+	}
 }

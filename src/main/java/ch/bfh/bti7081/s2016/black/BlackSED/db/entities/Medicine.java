@@ -1,6 +1,10 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.SiteEffectModel;
 
 public class Medicine extends AbstractEntity {
 
@@ -42,8 +46,17 @@ public class Medicine extends AbstractEntity {
 		this.doseUnit = doseUnit;
 	}
 	
-	public int[] getSideEffect() {
-		return Arrays.stream(this.sideEffect.substring(1, this.sideEffect.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+	public ArrayList<SideEffect> getSideEffect() {
+		int[] siteEffects = Arrays.stream(this.sideEffect.substring(1, this.sideEffect.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		ArrayList<SideEffect> al = new ArrayList<SideEffect>();
+		try {
+			SiteEffectModel sem = new SiteEffectModel(new MysqlAdapter());
+			for(int i = 0; i <= siteEffects.length; i++) {
+				al.add(sem.get(siteEffects[i]));
+			}
+		}
+		catch (Exception e) {}
+		return al;
 	}
 	
 	public void setSideEffect(int[] sideEffect) {

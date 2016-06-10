@@ -1,6 +1,10 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.TreatmentModel;
 
 public class Patient extends AbstractEntity {
 
@@ -15,8 +19,17 @@ public class Patient extends AbstractEntity {
 		this.patient_id = patient_id;
 	}
 
-	public int[] getThreatment() {
-		return Arrays.stream(this.threatment.substring(1, this.threatment.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+	public ArrayList<Treatment> getThreatment() {
+		int[] threatment = Arrays.stream(this.threatment.substring(1, this.threatment.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		ArrayList<Treatment> al = new ArrayList<Treatment>();
+		try {
+			TreatmentModel tm = new TreatmentModel(new MysqlAdapter());
+			for(int i = 0; i <= threatment.length; i++) {
+				al.add(tm.get(threatment[i]));
+			}
+		}
+		catch (Exception e) {}
+		return al;
 	}
 
 	public void setThreatment(int[] threatment) {

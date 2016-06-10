@@ -35,4 +35,22 @@ public class AddressModel extends AbstractModel {
 		return al;
 	}
 	
+	public Address get(int id) {
+		String sql = "SELECT * from address where address_id = " + id +";";
+		Address obj = new Address();
+		
+		try {
+			ResultSet rs = this.adapter.query(sql);
+			while(rs.next()) {
+				obj.setAddress_id(rs.getInt("address_id"));
+				obj.setCity(rs.getString("city"));
+				obj.setPostalCode(rs.getInt("postalCode"));
+				obj.setStreet(rs.getString("street"));
+			}
+		}
+		catch (Exception e) {}
+		
+		return obj;
+	}
+	
 }

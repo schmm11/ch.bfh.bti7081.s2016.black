@@ -1,6 +1,10 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.MedicineModel;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
@@ -19,8 +23,17 @@ public class Prescription extends AbstractEntity {
 		this.prescription_id = prescription_id;
 	}
 	
-	public int[] getMedicine() {
-		return Arrays.stream(this.medicine.substring(1, this.medicine.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+	public ArrayList<Medicine> getMedicine() {
+		int[] medicine = Arrays.stream(this.medicine.substring(1, this.medicine.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		ArrayList<Medicine> al = new ArrayList<Medicine>();
+		try {
+			MedicineModel tm = new MedicineModel(new MysqlAdapter());
+			for(int i = 0; i <= medicine.length; i++) {
+				al.add(tm.get(medicine[i]));
+			}
+		}
+		catch (Exception e) {}
+		return al;
 	}
 	
 	public void setMedicine(String[] medicine) {

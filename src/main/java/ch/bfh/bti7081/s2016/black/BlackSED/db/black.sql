@@ -21,7 +21,7 @@ create table location (
 	location_id int not null auto_increment,
 	name varchar(500) default NULL,
 	address varchar(500) default NULL,
-	primary key(doctor_id)
+	primary key(location_id)
 );
 create table medicine (
 	medicine_id int not null auto_increment,

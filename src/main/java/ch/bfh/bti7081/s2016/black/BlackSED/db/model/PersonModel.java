@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities.Patient;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities.Person;
 
 public class PersonModel extends AbstractModel {
@@ -37,4 +38,23 @@ public class PersonModel extends AbstractModel {
 		return al;
 	}
 	
+	public Person get(int id) {
+		String sql = "SELECT * from person where person_id = " + id +";";
+		Person obj = new Person();
+		
+		try {
+			ResultSet rs = this.adapter.query(sql);
+			while(rs.next()) {
+				obj.setPerson_id(rs.getInt("person_id"));
+				obj.setAddress(rs.getString("address"));
+				obj.setFirstName(rs.getString("firstName"));
+				obj.setLastName(rs.getString("lastName"));
+				obj.setPassword(rs.getString("password"));
+				obj.setUsername(rs.getString("username"));
+			}
+		}
+		catch (Exception e) {}
+		
+		return obj;
+	}
 }
