@@ -20,4 +20,12 @@
 
 - 20.04.2016: CS Task 07 Präsentation. Ganzes Team anwesend
 
-- 11.05.2016: CS Taks 09 and IDE Setup
+- 11/13.05.16: CS Taks 09 and IDE Setup
+
+- 18/20.05.16: CS1 Task 11, Scrum Sprint 1
+
+- 25/27.05.16: CS1 Task 12, Sprint 2
+
+- 01/03.06.16: CS Task 12/13 Präsentation, Sprint 2
+
+- 8/10.06.16: Sprint 3
