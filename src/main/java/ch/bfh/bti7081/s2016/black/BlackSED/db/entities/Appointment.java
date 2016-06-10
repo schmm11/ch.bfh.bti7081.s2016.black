@@ -1,5 +1,14 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.LocationModel;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.MedicineModel;
+
 public class Appointment extends AbstractEntity {
 
 	protected int appointment_id;
@@ -16,24 +25,42 @@ public class Appointment extends AbstractEntity {
 		this.appointment_id = appointment_id;
 	}
 	
-	public String getStartDate() {
-		return startDate;
+	public Date getStartDate() {
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return format.parse(this.startDate);
+		}
+		catch (Exception e) {}
+		return new Date();
 	}
 	
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	
-	public String getEndDate() {
-		return endDate;
+	public Date getEndDate() {
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return format.parse(this.endDate);
+		}
+		catch (Exception e) {}
+		return new Date();
 	}
 	
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	
-	public String getLocation() {
-		return location;
+	public Location getLocation() {
+		try {
+			int[] location = Arrays.stream(this.location.substring(1, this.location.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+			LocationModel lm = new LocationModel(new MysqlAdapter());
+			for(int i = 0; i <= location.length; i++) {
+				return lm.get(location[i]);
+			}
+		}
+		catch (Exception e) {}
+		return new Location();
 	}
 	
 	public void setLocation(String location) {

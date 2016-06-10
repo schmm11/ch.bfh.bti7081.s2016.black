@@ -19,17 +19,17 @@ public class Patient extends AbstractEntity {
 		this.patient_id = patient_id;
 	}
 
-	public ArrayList<Treatment> getThreatment() {
+	public Treatment[] getThreatment() {
 		int[] threatment = Arrays.stream(this.threatment.substring(1, this.threatment.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-		ArrayList<Treatment> al = new ArrayList<Treatment>();
+		Treatment[] t = new Treatment[threatment.length];
 		try {
 			TreatmentModel tm = new TreatmentModel(new MysqlAdapter());
 			for(int i = 0; i <= threatment.length; i++) {
-				al.add(tm.get(threatment[i]));
+				t[i] = tm.get(threatment[i]);
 			}
 		}
 		catch (Exception e) {}
-		return al;
+		return t;
 	}
 
 	public void setThreatment(int[] threatment) {

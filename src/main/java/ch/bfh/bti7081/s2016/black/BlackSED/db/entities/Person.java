@@ -1,5 +1,10 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.util.Arrays;
+
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
+import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.AddressModel;
+
 public class Person extends AbstractEntity {
 
 	protected int person_id;
@@ -33,8 +38,16 @@ public class Person extends AbstractEntity {
 		this.lastName = lastName;
 	}
 	
-	public String getAddress() {
-		return address;
+	public Address getAddress() {
+		int[] address = Arrays.stream(this.address.substring(1, this.address.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		try {
+			AddressModel am = new AddressModel(new MysqlAdapter());
+			for(int i = 0; i <= address.length; i++) {
+				return am.get(address[i]);
+			}
+		}
+		catch (Exception e) {}
+		return new Address();
 	}
 	
 	public void setAddress(String address) {

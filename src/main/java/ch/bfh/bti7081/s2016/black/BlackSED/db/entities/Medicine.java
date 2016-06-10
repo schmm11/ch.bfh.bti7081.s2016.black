@@ -46,17 +46,17 @@ public class Medicine extends AbstractEntity {
 		this.doseUnit = doseUnit;
 	}
 	
-	public ArrayList<SideEffect> getSideEffect() {
-		int[] siteEffects = Arrays.stream(this.sideEffect.substring(1, this.sideEffect.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-		ArrayList<SideEffect> al = new ArrayList<SideEffect>();
+	public SideEffect[] getSideEffect() {
+		int[] sideEffects = Arrays.stream(this.sideEffect.substring(1, this.sideEffect.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+		SideEffect[] se = new SideEffect[sideEffects.length];
 		try {
 			SiteEffectModel sem = new SiteEffectModel(new MysqlAdapter());
-			for(int i = 0; i <= siteEffects.length; i++) {
-				al.add(sem.get(siteEffects[i]));
+			for(int i = 0; i <= sideEffects.length; i++) {
+				se[i] = sem.get(sideEffects[i]);
 			}
 		}
 		catch (Exception e) {}
-		return al;
+		return se;
 	}
 	
 	public void setSideEffect(int[] sideEffect) {

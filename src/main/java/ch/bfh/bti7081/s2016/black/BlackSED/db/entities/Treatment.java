@@ -1,7 +1,10 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.entities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.MysqlAdapter;
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.db.model.AppointmentModel;
@@ -36,17 +39,17 @@ public class Treatment extends AbstractEntity {
 		this.name = name;
 	}
 	
-	public ArrayList<Prescription> getPrescription() {
+	public Prescription[] getPrescription() {
 		int[] prescription = Arrays.stream(this.prescription.substring(1, this.prescription.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-		ArrayList<Prescription> al = new ArrayList<Prescription>();
+		Prescription[] p = new Prescription[prescription.length];
 		try {
 			PrescriptionModel tm = new PrescriptionModel(new MysqlAdapter());
 			for(int i = 0; i <= prescription.length; i++) {
-				al.add(tm.get(prescription[i]));
+				p[i] = tm.get(prescription[i]);
 			}
 		}
 		catch (Exception e) {}
-		return al;
+		return p;
 	}
 	
 	public void setPrescription(int[] prescription) {
@@ -57,33 +60,43 @@ public class Treatment extends AbstractEntity {
 		this.prescription = prescription;
 	}
 	
-	public String getStartDate() {
-		return startDate;
+	public Date getStartDate() {
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return format.parse(this.startDate);
+		}
+		catch (Exception e) {}
+		return new Date();
 	}
 	
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	
-	public String getEndDate() {
-		return endDate;
+	public Date getEndDate() {
+		try {
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return format.parse(this.endDate);
+		}
+		catch (Exception e) {}
+		return new Date();
 	}
 	
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	
-	public ArrayList<Appointment> getAppointments() {
+	public Appointment[] getAppointments() {
 		int[] appointment = Arrays.stream(this.appointments.substring(1, this.appointments.length()-1).split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-		ArrayList<Appointment> al = new ArrayList<Appointment>();
+		Appointment[] a = new Appointment[appointment.length];
 		try {
 			AppointmentModel tm = new AppointmentModel(new MysqlAdapter());
 			for(int i = 0; i <= appointment.length; i++) {
-				al.add(tm.get(appointment[i]));
+				a[i] = tm.get(appointment[i]);
 			}
 		}
 		catch (Exception e) {}
-		return al;
+		return a;
 	}
 	
 	public void setAppointments(int[] appointments) {
