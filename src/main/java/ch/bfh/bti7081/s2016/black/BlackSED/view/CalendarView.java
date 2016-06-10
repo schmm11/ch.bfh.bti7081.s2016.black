@@ -22,8 +22,7 @@ interface CalendarViewInterface extends BaseViewInterface {
 public class CalendarView extends BaseView implements CalendarViewInterface {
 
 	public CalendarView(String navigationTitle) {
-		super(navigationTitle);
-		
+		super(navigationTitle);	
 		
 		// **************** TABLE ***********************
 		Table table = new Table("Termin-Tabelle");
@@ -60,7 +59,7 @@ public class CalendarView extends BaseView implements CalendarViewInterface {
 		    
 		// Beispiele
 		table.addItem(new Object[]{1, "01.01.2016", "Doktor Müller", "Erste Besprechung", button1}, 1);
-		table.addItem(new Object[]{2, "13.02.2016", "Doktor Müller", "Zweite Besprechung", button2}, 2);
+		table.addItem(new Object[]{2, "13.02.2016", "Doktor Müller 2", "Zweite Besprechung", button2}, 2);
 		table.addItem(new Object[]{3, "05.04.2016", "Doktor Moser", "Dritte Besprechung", button3}, 3);
 		
 		table.setSelectable(true);
@@ -72,37 +71,19 @@ public class CalendarView extends BaseView implements CalendarViewInterface {
 			
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				// TODO Auto-generated method stub
 				current.setValue("Selected: " + table.getValue());
 			}
 		});
 
 		table.setPageLength(table.size());
-		
-		
-		// ************************ CALENDAR *******************************//
-		Calendar cal = new Calendar("My Calendar");
-		cal.setWidth("600px");
-		cal.setHeight("300px");
-		
-		
-		
-		// ************************ END CALENDAR *******************************//
-		
 		addComponent(table);
-		//addComponent(current);
-		addComponent(cal);
-		setComponentAlignment(cal, Alignment. TOP_RIGHT);
-		//setComponentAlignment(current, Alignment.MIDDLE_CENTER);
 		setComponentAlignment(table, Alignment.TOP_LEFT);
-		//setComponentAlignment(table, Alignment. MIDDLE_RIGHT);
-		// **************** END OF TABLE ***************
 	}
 
 	public void presentView(CalendarDetailView view, String identifier) {
 		Navigator navigator = getUI().getNavigator();
 		navigator.addView(identifier, view);
-		navigator.navigateTo(identifier);		
+		navigator.navigateTo(identifier);	
 	}
 	
 }
