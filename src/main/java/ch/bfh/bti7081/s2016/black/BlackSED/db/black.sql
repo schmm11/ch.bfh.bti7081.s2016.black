@@ -1,3 +1,4 @@
+drop table address;
 create table address (
 	address_id int not null auto_increment,
 	street varchar(500) default NULL,
@@ -6,6 +7,7 @@ create table address (
 	primary key(address_id)
 );
 
+drop table appointment;
 create table appointment (
 	appointment_id int not null auto_increment,
 	startDate varchar(500) default '0000-00-00 00:00:00',
@@ -14,12 +16,14 @@ create table appointment (
 	primary key(appointment_id)
 );
 
+drop table doctor;
 create table doctor (
 	doctor_id int not null auto_increment,
 	defaultLocation varchar(500) default NULL,
 	primary key(doctor_id)
 );
 
+drop table location;
 create table location (
 	location_id int not null auto_increment,
 	name varchar(500) default NULL,
@@ -27,6 +31,7 @@ create table location (
 	primary key(location_id)
 );
 
+drop table medicine;
 create table medicine (
 	medicine_id int not null auto_increment,
 	name varchar(500) default NULL,
@@ -36,12 +41,14 @@ create table medicine (
 	primary key(medicine_id)
 );
 
+drop table patient;
 create table patient (
 	patient_id int not null auto_increment,
 	threatment varchar(500) default NULL,
 	primary key(patient_id)
 );
 
+drop table person;
 create table person (
 	person_id int not null auto_increment,
 	firstName varchar(500) default NULL,
@@ -52,6 +59,7 @@ create table person (
 	primary key(person_id)
 );
 
+drop table prescription;
 create table prescription (
 	prescription_id int not null auto_increment,
 	medicine varchar(500) default NULL,
@@ -60,6 +68,7 @@ create table prescription (
 	primary key(prescription_id)
 );
 
+drop table sideEffect;
 create table sideEffect (
 	siteEffect_id int not null auto_increment,
 	name varchar(500) default NULL,
@@ -67,6 +76,7 @@ create table sideEffect (
 	primary key(siteEffect_id)
 );
 
+drop table treatment;
 create table treatment (
 	treatment_id int not null auto_increment,
 	name varchar(500) default NULL,
