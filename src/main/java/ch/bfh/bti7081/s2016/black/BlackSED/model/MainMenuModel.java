@@ -14,6 +14,7 @@ public class MainMenuModel extends BaseModel {
 		list.add(new MainMenuEntry(MainMenuType.MEDICAMENTS, "Medikamente"));
 		list.add(new MainMenuEntry(MainMenuType.EMERGENCY, "Notfallkarte"));
 		list.add(new MainMenuEntry(MainMenuType.SETTINGS, "Einstellungen"));
+		list.add(new MainMenuEntry(MainMenuType.LOGOUT, "Abmelden"));
 		return list;
 	}
 }

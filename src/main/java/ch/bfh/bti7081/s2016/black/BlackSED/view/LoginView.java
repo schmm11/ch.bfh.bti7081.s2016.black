@@ -1,39 +1,37 @@
 package main.java.ch.bfh.bti7081.s2016.black.BlackSED.view;
 
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.vaadin.data.Validator.InvalidValueException;
-import com.vaadin.event.FieldEvents.TextChangeListener;
+import com.vaadin.data.validator.RegexpValidator;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.event.ShortcutListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.AbstractTextField;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 import main.java.ch.bfh.bti7081.s2016.black.BlackSED.helper.NavigationHelper;
-import main.java.ch.bfh.bti7081.s2016.black.BlackSED.helper.StringValidator;
 
 
 /** */
 interface LoginViewInterface
 {
 	/** */
-	public interface LoginViewListener
+	public interface LoginListener
 	{
-		public boolean loginAttempt(final String strUserName, final String strPassword);
+		public void loginAttempt(final String strUserName, final String strPassword);
 	}
 
 	/** */
-	public void addListener(final LoginViewListener xListener);
+	public void addLoginListener(final LoginListener xListener);
 }
 
 
@@ -51,7 +49,7 @@ public final class LoginView extends VerticalLayout implements View, LoginViewIn
     private final Button k_xLoginButton;
 
     /** */
-    private final Set<LoginViewListener> k_setListeners = new HashSet<LoginViewListener>();
+    private final List<LoginListener> k_lstListeners = new ArrayList<LoginListener>();
 
     /** */
     public LoginView()
@@ -63,37 +61,32 @@ public final class LoginView extends VerticalLayout implements View, LoginViewIn
 			@Override
 			public void handleAction(Object sender, Object target)
 			{
+				getSession().setAttribute("username", "user");
 				getUI().getNavigator().navigateTo(NavigationHelper.MAINVIEW);
 			}
 		});
 
-    	final Predicate<String> xPasswordPredicate = (strPassword) ->
-    	{
-    		return strPassword.length() >= 8 &&
-    				strPassword.matches(".*\\d.*") &&
-    				strPassword.matches(".*\\w.*") &&
-    				strPassword.matches(".*[^\\w\\d\\s].*");
-    	};
-
     	k_xTextField = new TextField();
     		k_xTextField.setCaption("Username");
+    		k_xTextField.addValidator(new RegexpValidator("[A-Za-z]+[\\w-]*", "Name must start with a letter and contain letters, digits, - or _"));
+    		k_xTextField.setImmediate(true);
     		k_xTextField.setRequired(true);
-    		k_xTextField.setValidationVisible(true);
-    		k_xTextField.addValidator(new StringValidator(str -> str.matches("[A-Za-z]+[A-Za-z0-9-_]*")));
-    		k_xTextField.addTextChangeListener(validateOnChange(k_xTextField));
-    		k_xTextField.addShortcutListener(doOnEnter(this::loginAttempt));
+    		k_xTextField.addShortcutListener(loginOnEnter(this::loginAttempt));
 
     	k_xPasswordField = new PasswordField();
     		k_xPasswordField.setCaption("Password");
+    		// remove validations our current password does not respect
+//    		k_xPasswordField.addValidator(new StringLengthValidator("Password is too short", 8, null, false));
+    		k_xPasswordField.addValidator(new RegexpValidator(".*[A-Za-z].*", "Password must contain a letter"));
+//    		k_xPasswordField.addValidator(new RegexpValidator(".*[0-9].*", "Password must contain a digit"));
+    		k_xPasswordField.addValidator(new RegexpValidator("[A-Za-z0-9]+", "Password must only contain digits and letters"));
+    		k_xPasswordField.setImmediate(true);
     		k_xPasswordField.setRequired(true);
-    		k_xPasswordField.addValidator(new StringValidator(xPasswordPredicate));
-    		k_xPasswordField.setValidationVisible(true);
-    		k_xPasswordField.addTextChangeListener(validateOnChange(k_xPasswordField));
-    		k_xPasswordField.addShortcutListener(doOnEnter(this::loginAttempt));
+    		k_xPasswordField.addShortcutListener(loginOnEnter(this::loginAttempt));
 
     	k_xLoginButton = new Button();
     		k_xLoginButton.setCaption("Login");
-    		k_xLoginButton.addClickListener(l -> loginAttempt());
+    		k_xLoginButton.addClickListener(xButton -> loginAttempt());
 
     	final FormLayout xLayout = new FormLayout();
     		xLayout.setSizeUndefined();
@@ -109,37 +102,45 @@ public final class LoginView extends VerticalLayout implements View, LoginViewIn
     	setComponentAlignment(xLayout, Alignment.MIDDLE_CENTER);
     }
 
+    /** */
     private void loginAttempt()
     {
-    	final boolean bSuccess = k_setListeners.stream()
-    		.map(l -> l.loginAttempt(k_xTextField.getValue(), k_xPasswordField.getValue()))
-    		.allMatch(l -> l);
-    	if(bSuccess)
-    	{
-    		getUI().getNavigator().navigateTo(NavigationHelper.MAINVIEW);
-    	}
+    	final String strUsername = k_xTextField.getValue();
+    	final String strPassword = k_xPasswordField.getValue();
+
+    	k_lstListeners.forEach(xListener -> xListener.loginAttempt(strUsername, strPassword));
+    }
+
+    /** */
+    public void loginSuccess(final String strUsername)
+    {
+    	getSession().setAttribute("username", strUsername);
+    	getUI().getNavigator().navigateTo(NavigationHelper.MAINVIEW);
+    }
+
+    /** */
+    public void loginFailed()
+    {
+    	Notification.show("Invalid username or password", Type.HUMANIZED_MESSAGE);
     }
 
 	@Override
 	public void enter(final ViewChangeEvent xEvent)
 	{
 		k_xTextField.focus();
+		k_xTextField.setValue("");
+		k_xPasswordField.setValue("");
 	}
 
 	@Override
-	public void addListener(final LoginViewListener xListener)
+	public void addLoginListener(final LoginListener xListener)
 	{
-		if(xListener != null)
-		{
-			k_setListeners.add(xListener);
-		}
-		else
-		{
-			throw new IllegalArgumentException("xListener musn't be null");
-		}
+		if(xListener == null) throw new IllegalArgumentException("xListener must not be null");
+		k_lstListeners.add(xListener);
 	}
 
-	private static ShortcutListener doOnEnter(final Runnable xAction)
+	/** */
+	private static ShortcutListener loginOnEnter(final Runnable xAction)
 	{
 		return new ShortcutListener("enter", ShortcutAction.KeyCode.ENTER, null)
 		{
@@ -147,20 +148,6 @@ public final class LoginView extends VerticalLayout implements View, LoginViewIn
 			public void handleAction(final Object xSender, final Object xTarget)
 			{
 				xAction.run();
-			}
-		};
-	}
-
-	private static TextChangeListener validateOnChange(final AbstractTextField xField)
-	{
-		return (xEvent) ->
-		{
-			try
-			{
-				xField.validate();
-			}
-			catch(final InvalidValueException xException)
-			{
 			}
 		};
 	}

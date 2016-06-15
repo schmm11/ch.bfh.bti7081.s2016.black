@@ -5,12 +5,13 @@ public class MainMenuEntry {
 		CALENDAR,
 		MEDICAMENTS,
 		EMERGENCY,
-		SETTINGS
+		SETTINGS,
+		LOGOUT,
 	}
-	
+
 	public MainMenuType mainMenuType;
 	public String buttonTitle;
-	
+
 	public MainMenuEntry(MainMenuType mainMenuType, String buttonTitle) {
 		this.mainMenuType = mainMenuType;
 		this.buttonTitle = buttonTitle;
